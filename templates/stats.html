@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Vibe Stats</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Global Vibe Analytics</h1>
+        
+        <div class="stats-grid">
+            <div class="result-card">
+                <h3>Total Analyzed</h3>
+                <p class="stat-number">{{ total }}</p>
+            </div>
+
+            <div class="result-card">
+                <h3>Overall Mood Score</h3>
+                <p class="stat-number">{{ avg }}</p>
+                <small>(-1 to 1 Scale)</small>
+            </div>
+        </div>
+
+        <div class="result-card">
+            <h3>Vibe Distribution</h3>
+            <p>Positive: {{ pos_p }}% | Negative: {{ neg_p }}%</p>
+            <div class="vibe-score-bar">
+                <div class="vibe-fill positive" style="--w: {{ pos_p }}%; width: var(--w);"></div>
+            </div>
+        </div>
+
+        <a href="{{ url_for('home') }}" class="back">Back Home</a>
+    </div>
+</body>
+</html>

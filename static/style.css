@@ -1,0 +1,215 @@
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    transition: all 0.5s ease; /* This makes the color change smooth! */
+    padding: 40px;
+    border-radius: 20px;
+    background: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.mood-happy {
+    background: linear-gradient(135deg, #ffffff 0%, #e6ffed 100%);
+    border: 2px solid #28a745;
+    box-shadow: 0 10px 30px rgba(40, 167, 69, 0.2);
+}
+
+.mood-sad {
+    background: linear-gradient(135deg, #ffffff 0%, #fff5f5 100%);
+    border: 2px solid #dc3545;
+    box-shadow: 0 10px 30px rgba(220, 53, 69, 0.2);
+}
+
+.mood-neutral {
+    background: linear-gradient(135deg, #ffffff 0%, #fffdf5 100%);
+    border: 2px solid #ffc107;
+}
+
+:root {
+    --primary-bg: #f4f7f6ec;
+    --pos-color: #28a745;
+    --neg-color: #dc3545;
+    --neu-color: #ffee00;
+    --card-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--primary-bg);
+    padding: 40px;
+    color: #333;
+}
+
+.result-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: var(--card-shadow);
+    text-align: center;
+    margin-bottom: 30px;
+    border-top: 8px solid var(--neu-color); 
+}
+
+.result-card.positive { border-top-color: var(--pos-color); }
+.result-card.negative { border-top-color: var(--neg-color); }
+
+.vibe-score-bar {
+    background: #eee;
+    height: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+@keyframes growBar {
+    from { width: 0; }
+    to { width: var(--w); }
+}
+
+.vibe-fill {
+    height: 100%;
+    background: var(--pos-color);
+    animation: growBar 1s ease-out forwards; 
+}
+
+textarea {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: inherit;
+}
+
+.positive-vibe { border-left: 10px solid #28a745; background-color: #e6ffed; }
+.negative-vibe { border-left: 10px solid #dc3545; background-color: #fff5f5; }
+.neutral-vibe { border-left: 10px solid #ffc107; background-color: #fffdf5; }
+
+.analyze {
+    text-decoration: none;
+    border: 1px solid;
+    margin-bottom: 20px;
+    width: 10rem;
+    padding-block: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: inherit;
+    background: rgb(255, 255, 255);
+    color: black;
+    transition: 0.3s;
+}
+
+.analyze:hover {
+    background: black;
+    color: white;
+}
+
+.history {
+    justify-content: center;
+    width: 2rem;
+    margin-top: 10px;
+    color: rgb(23, 194, 0);
+    text-decoration: none;
+    font-size: 0.9em;
+    border: 1px solid rgb(88, 253, 152);
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.history:hover {
+    background-color: #00dd00;
+    color: white;
+}
+
+.history-grid {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.history-card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    flex: 1 1 calc(30% - 20px);
+    max-width: calc(33.33% - 20px);
+    position: relative;
+    box-sizing: border-box;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease
+}
+
+.history-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.vibe-tag {
+    font-size: clamp(0.25rem, 5vw, 0.65rem);
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 20px;
+    color: rgb(0, 0, 0);
+}
+
+.vibe-tag.positive { background: var(--pos-color); }
+.vibe-tag.negative { background: var(--neg-color); }
+.vibe-tag.neutral { background: var(--neu-color); }
+
+.clear {
+    display: inline-block;
+    margin-top: 10px;
+    color: #dc3545;
+    text-decoration: none;
+    font-size: 0.9em;
+    border: 1px solid #dc3545;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.clear:hover {
+    background-color: #dc3545;
+    color: white;
+}
+
+.back {
+    display: flex;
+    justify-content: center;
+    width: 5rem;
+    margin-top: 10px;
+    color: blue;
+    text-decoration: none;
+    font-size: 0.9em;
+    border: 1px solid rgb(150, 150, 250);
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.back:hover {
+    background-color: #1e2ac9;
+    color: white;
+}
+
+.stats {
+    display: flex;
+    justify-content: center;
+    width: 5rem;
+    margin-top: 10px;
+    color: #ff9101;
+    text-decoration: none;
+    font-size: 0.9em;
+    border: 1px solid #ff9101;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.stats:hover {
+    background-color: #ff9101;
+    color: white;
+}

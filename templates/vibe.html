@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vibe Checker AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container 
+    {% if score %}
+        {% if score > 0.3 %}mood-happy
+        {% elif score < -0.3 %}mood-sad
+        {% elif score != 0 %}mood-neutral
+        {% endif %}
+    {% endif %}">
+        <h1>Vibe Checker AI 🤖</h1>
+        <p>Type how you're feeling, and our AI will analyze the "vibe."</p>
+
+        <form action="/analyze" method="POST">
+            <textarea name="user_text" rows="5" required placeholder="What's on your mind?"></textarea>
+            <br><br>
+            <button type="submit" class="analyze" >Analyze Sentiment</button>
+        </form>
+
+        {% if result %}
+            <div class="result-card {{ result.lower() }}">
+                <h2>Your current vibe is: {{ result }}</h2>
+                <div class="vibe-score-bar">
+                    <div class="vibe-fill" style="--w: {{ percent }}%; width: var(--w);"></div>
+                </div>
+            </div>
+        {% endif %}
+
+        <a href="/history" class="history">View History</a>
+
+        {% if history %}
+        <div class="history-grid">
+            {% for entry in history %}
+            <div class="history-card">
+                <span class="vibe-tag {{ entry.vibe.lower() }}">{{ entry.vibe }}</span>
+                <p>"{{ entry.user_text }}"</p>
+                <small>Character Length: {{ entry.length }}</small>
+                <small>Score: {{ entry.score }}</small>
+            </div>
+            {% endfor %}
+        </div>
+        <a href="/clear" class="clear" onclick="return confirm('Are you sure you want to wipe the memory?')">
+            Clear All History 🗑️
+        </a>
+        <a href="/stats" class="stats">
+            View Stats
+        </a>
+        <a href=" {{ url_for('home') }}" class="back">
+            Back
+        </a>
+        {% endif %}
+
+    </div>
+</body>
+</html>
